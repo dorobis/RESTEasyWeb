@@ -1,11 +1,12 @@
-package org.dorobis.resteasy;
+package org.dorobis.resteasy.services;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,10 +14,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.dorobis.resteasy.client.CountryClient;
-import org.dorobis.resteasy.model.RestMsgContent;
-import org.dorobis.resteasy.model.RestResponse;
-import org.dorobis.resteasy.model.Country;
+import org.dorobis.resteasy.client.SunriseSunsetClient;
+import org.dorobis.resteasy.model.CountryContent;
 import org.dorobis.resteasy.model.Employee;
+import org.dorobis.resteasy.model.SunriseSunset;
+import org.dorobis.resteasy.model.SunriseSunsetContent;
 
 @Path("/sampleservice")
 public class SampleService {
@@ -103,16 +105,29 @@ public class SampleService {
     @Path("/json/countryNames/")
     @Produces("application/json")
     public List<String> listCountryNamesJSON(){
-    	CountryClient countryClient = new CountryClient();
-    	RestMsgContent restMsgContent = new RestMsgContent();
+    	CountryClient countryServiceClient = new CountryClient();
+    	CountryContent countryResponseContent = new CountryContent();
     	ArrayList<String> countryNames = new ArrayList<String>();
     	
-    	restMsgContent = countryClient.getCountryInfo();
-    	Iterator<Country> iterator = restMsgContent.getRestResponse().getResult().iterator();
+    	countryResponseContent = countryServiceClient.getServiceInfo();
+    	Iterator<?> iterator = countryResponseContent.getRestResponse().getResult().iterator();
     	while(iterator.hasNext()) {
-    		countryNames.add(iterator.next().getName());
+    		LinkedHashMap<?,?> lhm = (LinkedHashMap<?,?>)(iterator.next());
+    		countryNames.add((String)(lhm.get("name")));
     	}
         return countryNames;
     }
     
+    @GET
+    @Path("/json/sunRiseAndSetTimes/")
+    @Produces("application/json")
+    public SunriseSunset listSunRiseAndSetTimesJSON(){
+    	SunriseSunsetClient sunriseSunsetClient = new SunriseSunsetClient();
+    	SunriseSunsetContent sunriseSunsetResponseContent = new SunriseSunsetContent();
+    	
+    	sunriseSunsetResponseContent = sunriseSunsetClient.getServiceInfo();
+    	SunriseSunset SunriseSunset = sunriseSunsetResponseContent.getResults();
+        return SunriseSunset;
+    }
+   
 }

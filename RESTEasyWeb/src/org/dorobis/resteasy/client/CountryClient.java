@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.dorobis.resteasy.model.RestResponse;
 import org.dorobis.resteasy.model.Country;
-import org.dorobis.resteasy.model.RestMsgContent;
+import org.dorobis.resteasy.model.CountryContent;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
@@ -14,23 +14,30 @@ import com.fasterxml.jackson.databind.MappingJsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CountryClient {
-	public RestMsgContent getCountryInfo() {
-		URL url;
+	public CountryClient() {
+		super();
+	}
+
+	private String urlString = "http://services.groupkt.com/country/get/all";
+	private URL url;
+	
+	public CountryContent getServiceInfo() {
+
 		MappingJsonFactory jsonFactory = new MappingJsonFactory(); 
 		
 		ObjectMapper mapper = new ObjectMapper();	
-		TypeReference<RestMsgContent> restMsgContentRef = new TypeReference<RestMsgContent>() { };
-		RestMsgContent restMsgContent= null;
+		TypeReference<CountryContent> countryResponseRef = new TypeReference<CountryContent>() { };
+		CountryContent countryResponseContent= null;
 	
 		try {
-			url = new URL("http://services.groupkt.com/country/get/all");
-			restMsgContent = mapper.readValue(url, RestMsgContent.class);
+			url = new URL(urlString);
+			countryResponseContent = mapper.readValue(url, CountryContent.class);
 			JsonParser jp = jsonFactory.createJsonParser(url);
-			restMsgContent = jp.readValueAs(restMsgContentRef);
+			countryResponseContent = jp.readValueAs(countryResponseRef);
 		} catch (Exception e) {
 			System.out.println("Exception: " + e.getMessage());
 		}
 		
-		return restMsgContent;
+		return countryResponseContent;
 	}
 }

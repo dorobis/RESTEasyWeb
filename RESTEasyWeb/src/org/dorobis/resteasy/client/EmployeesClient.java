@@ -5,15 +5,16 @@ import java.util.List;
 
 import org.dorobis.resteasy.model.Employee;
 
-import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
 
-public class SampleClient {
+public class EmployeesClient {
 	public static void main(String[] args) {
 		URL url;
 		MappingJsonFactory jsonFactory = new MappingJsonFactory(); 
+		
+		org.springframework.context.ApplicationListener foo;
 		
 		List<Employee> employees = null;
 		try {

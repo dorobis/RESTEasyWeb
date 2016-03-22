@@ -5,8 +5,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@XmlRootElement(name = "RestMsgContent")
-public class RestMsgContent {
+@XmlRootElement(name = "CountryContent")
+public class CountryContent {
 	private RestResponse restResponse;
 
     @XmlElement

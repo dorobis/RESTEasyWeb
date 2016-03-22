@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "RestResponse")
    public class RestResponse {
 	private ArrayList<String> messages;
-	private ArrayList<Country> result;
+	private ArrayList<?> result;
 	
     @XmlElement
 	public ArrayList<String> getMessages() {
@@ -21,12 +21,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 	}
     
     @XmlElement
-	public ArrayList<Country> getResult() {
+	public ArrayList<?> getResult() {
 		return result;
 	}
     
     @XmlElement
-	public void setResult(ArrayList<Country> result) {
+	public void setResult(ArrayList<?> result) {
 		this.result = result;
 	}
 }
