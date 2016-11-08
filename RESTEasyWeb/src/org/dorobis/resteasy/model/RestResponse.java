@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 		return messages;
 	}
     
-    @XmlElement
+    //@XmlElement
 	public void setMessages(ArrayList<String> messages) {
 		this.messages = messages;
 	}
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 		return result;
 	}
     
-    @XmlElement
+    //@XmlElement
 	public void setResult(ArrayList<?> result) {
 		this.result = result;
 	}

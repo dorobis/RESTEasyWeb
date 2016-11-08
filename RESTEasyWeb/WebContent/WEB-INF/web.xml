@@ -9,14 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <servlet-name>Resteasy</servlet-name>
-    <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Resteasy</servlet-name>
-    <url-pattern>/restful-services/*</url-pattern>
-  </servlet-mapping>
   <context-param>
     <param-name>resteasy.scan</param-name>
     <param-value>true</param-value>
@@ -43,6 +35,19 @@
     <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
     <param-value>resources.application</param-value>
   </context-param>
+  <servlet>
+  <servlet-name>CXFServlet</servlet-name>
+  <servlet-class>
+    org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet
+  </servlet-class>
+  <init-param>
+  <param-name>jaxrs.serviceClasses</param-name>
+  <param-value>
+    org.dorobis.resteasy.services.SampleService
+  </param-value>
+ </init-param>
+  <load-on-startup>1</load-on-startup>
+  </servlet>
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>

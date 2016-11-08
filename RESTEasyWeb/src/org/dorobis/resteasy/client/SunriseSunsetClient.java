@@ -15,20 +15,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ManagedBean(name="sunriseSetBean",eager=true)
 @SessionScoped
 public class SunriseSunsetClient  {
-	private String urlString = "http://api.sunrise-sunset.org/json?lat=40.4197481&lng=-74.105480";
+	//private String urlString = "http://api.sunrise-sunset.org/json?lat=40.4197481&lng=-74.105480";
+	private String urlString = "http://api.sunrise-sunset.org/json?lat=40.419854&lng=-74.103248&formatted=0";
 	private URL url;
 	private SunriseSunset sunriseSunset;
 	
 	public SunriseSunsetClient() {
 		super();
-		sunriseSunset = getServiceInfo().getResults();
+//		sunriseSunset = getServiceInfo().getResults();
 	}
 	
 	
 	public SunriseSunsetContent getServiceInfo() {
-
-		MappingJsonFactory jsonFactory = new MappingJsonFactory(); 
-		
 		ObjectMapper mapper = new ObjectMapper();	
 		TypeReference<SunriseSunsetContent> sunriseSunsetResponseContentRef = new TypeReference<SunriseSunsetContent>() { };
 		SunriseSunsetContent sunriseSunsetResponseContent= null;

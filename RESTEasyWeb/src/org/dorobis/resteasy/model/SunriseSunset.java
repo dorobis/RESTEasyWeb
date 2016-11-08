@@ -1,7 +1,12 @@
 package org.dorobis.resteasy.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.Duration;
+import java.lang.Long;
+
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,15 +23,18 @@ public class SunriseSunset {
 	private String nautical_twilight_end;
 	private String astronomical_twilight_begin;
 	private String astronomical_twilight_end;
+	
+	private final ZoneId zoneId = ZoneId.of("America/New_York");
+	private final DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a z").withZone(zoneId);
 
     @XmlElement
 	public String getSunrise() {
 		return sunrise;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setSunrise(String sunrise) {
-		this.sunrise = sunrise;
+		this.sunrise = getISO_OFFSET_DATE_TIME_ET(sunrise);
 	}
 
     @XmlElement
@@ -34,9 +42,10 @@ public class SunriseSunset {
 		return sunset;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setSunset(String sunset) {
-		this.sunset = sunset;
+		this.sunset = getISO_OFFSET_DATE_TIME_ET(sunset);
+
 	}
 
     @XmlElement
@@ -44,9 +53,9 @@ public class SunriseSunset {
 		return solar_noon;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setSolar_noon(String solar_noon) {
-		this.solar_noon = solar_noon;
+		this.solar_noon = getISO_OFFSET_DATE_TIME_ET(solar_noon);
 	}
 
     @XmlElement
@@ -54,9 +63,10 @@ public class SunriseSunset {
 		return day_length;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setDay_length(String day_length) {
-		this.day_length = day_length;
+		Duration duration = Duration.ofSeconds(Long.parseLong(day_length));
+		this.day_length = duration.toString();
 	}
 
     @XmlElement
@@ -64,9 +74,9 @@ public class SunriseSunset {
 		return civil_twilight_begin;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setCivil_twilight_begin(String civil_twilight_begin) {
-		this.civil_twilight_begin = civil_twilight_begin;
+		this.civil_twilight_begin = getISO_OFFSET_DATE_TIME_ET(civil_twilight_begin);
 	}
 
     @XmlElement
@@ -74,9 +84,9 @@ public class SunriseSunset {
 		return civil_twilight_end;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setCivil_twilight_end(String civil_twilight_end) {
-		this.civil_twilight_end = civil_twilight_end;
+		this.civil_twilight_end = getISO_OFFSET_DATE_TIME_ET(civil_twilight_end);
 	}
 
     @XmlElement
@@ -84,9 +94,9 @@ public class SunriseSunset {
 		return nautical_twilight_begin;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setNautical_twilight_begin(String nautical_twilight_begin) {
-		this.nautical_twilight_begin = nautical_twilight_begin;
+		this.nautical_twilight_begin = getISO_OFFSET_DATE_TIME_ET(nautical_twilight_begin);
 	}
 
     @XmlElement
@@ -94,9 +104,9 @@ public class SunriseSunset {
 		return nautical_twilight_end;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setNautical_twilight_end(String nautical_twilight_end) {
-		this.nautical_twilight_end = nautical_twilight_end;
+		this.nautical_twilight_end = getISO_OFFSET_DATE_TIME_ET(nautical_twilight_end);
 	}
 
     @XmlElement
@@ -104,9 +114,9 @@ public class SunriseSunset {
 		return astronomical_twilight_begin;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setAstronomical_twilight_begin(String astronomical_twilight_begin) {
-		this.astronomical_twilight_begin = astronomical_twilight_begin;
+		this.astronomical_twilight_begin = getISO_OFFSET_DATE_TIME_ET(astronomical_twilight_begin);
 	}
 
     @XmlElement
@@ -114,8 +124,12 @@ public class SunriseSunset {
 		return astronomical_twilight_end;
 	}
 
-    @XmlElement
+    //@XmlElement
 	public void setAstronomical_twilight_end(String astronomical_twilight_end) {
-		this.astronomical_twilight_end = astronomical_twilight_end;
+		this.astronomical_twilight_end = getISO_OFFSET_DATE_TIME_ET(astronomical_twilight_end);
+	}
+	
+	private String getISO_OFFSET_DATE_TIME_ET(String strDateTimeISO) {
+		return  ZonedDateTime.parse(strDateTimeISO, DateTimeFormatter.ISO_OFFSET_DATE_TIME).format(format);
 	}
 }

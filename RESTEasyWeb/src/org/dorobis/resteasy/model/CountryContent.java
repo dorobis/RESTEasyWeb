@@ -15,7 +15,7 @@ public class CountryContent {
 		return restResponse;
 	}
 
-    @XmlElement
+    //@XmlElement
     @JsonProperty("RestResponse")
 	public void setRestResponse(RestResponse restResponse) {
 		this.restResponse = restResponse;

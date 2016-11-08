@@ -14,8 +14,6 @@ public class EmployeesClient {
 		URL url;
 		MappingJsonFactory jsonFactory = new MappingJsonFactory(); 
 		
-		org.springframework.context.ApplicationListener foo;
-		
 		List<Employee> employees = null;
 		try {
 			url = new URL("http://localhost:8080/RESTEasyWeb/restful-services/sampleservice/json/employees");

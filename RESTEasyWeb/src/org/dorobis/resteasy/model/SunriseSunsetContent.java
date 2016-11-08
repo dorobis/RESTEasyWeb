@@ -1,5 +1,6 @@
 package org.dorobis.resteasy.model;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "SunriseSunsetContent")
