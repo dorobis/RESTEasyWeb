@@ -66,7 +66,10 @@ public class SunriseSunset {
     //@XmlElement
 	public void setDay_length(String day_length) {
 		Duration duration = Duration.ofSeconds(Long.parseLong(day_length));
-		this.day_length = duration.toString();
+		this.day_length = duration.toDays() + " days " 
+				+ (duration.toHours() % 24) + " hours " 
+				+ (duration.toMinutes() % 60) + " minutes " 
+				+ ((duration.toMillis() / 1000) % 60) + " seconds ";
 	}
 
     @XmlElement

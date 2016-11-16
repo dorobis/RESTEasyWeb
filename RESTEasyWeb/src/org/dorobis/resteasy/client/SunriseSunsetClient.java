@@ -12,7 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@ManagedBean(name="sunriseSetBean",eager=true)
+@ManagedBean(name="sunriseSunsetBean",eager=true)
 @SessionScoped
 public class SunriseSunsetClient  {
 	//private String urlString = "http://api.sunrise-sunset.org/json?lat=40.4197481&lng=-74.105480";
@@ -22,7 +22,7 @@ public class SunriseSunsetClient  {
 	
 	public SunriseSunsetClient() {
 		super();
-//		sunriseSunset = getServiceInfo().getResults();
+		sunriseSunset = getServiceInfo().getResults();
 	}
 	
 	
