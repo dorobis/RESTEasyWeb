@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
  <application/>
+ <managed-bean>
+ 	<managed-bean-name>sunriseSunset</managed-bean-name>
+ 	<managed-bean-class>org.dorobis.resteasy.model.SunriseSunset</managed-bean-class>
+ 	<managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
 </faces-config>
