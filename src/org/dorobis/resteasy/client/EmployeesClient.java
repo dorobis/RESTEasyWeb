@@ -16,8 +16,11 @@ public class EmployeesClient {
 		
 		List<Employee> employees = null;
 		try {
+			/**
 			url = new URL("http://localhost:8080/RESTEasyWeb/restful-services/sampleservice/json/employees");
-			JsonParser jp = jsonFactory.createJsonParser(url);
+			**/
+			url = new URL("http://localhost:8080/RESTEasyWeb/sampleservice/json/employees");
+			JsonParser jp = jsonFactory.createParser(url);
 			TypeReference<List<Employee>> employeeRef = new TypeReference<List<Employee>>() { };
 			employees = jp.readValueAs(employeeRef);
 			System.out.println("There are " + employees.size() + " employees");

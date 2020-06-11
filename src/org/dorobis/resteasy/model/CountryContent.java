@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CountryContent {
 	private RestResponse restResponse;
 
-    @XmlElement
+    //@XmlElement
     @JsonProperty("RestResponse")
 	public RestResponse getRestResponse() {
 		return restResponse;
